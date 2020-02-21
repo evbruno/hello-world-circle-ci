@@ -1,0 +1,18 @@
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/mern-starter
+    docker:
+      - image: circleci/node:10.16.3
+      - image: mongo:4.2.0
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@5'
+      - run:
+          name: install-npm-wee
+          command: npm install
+     - run:
+          name: test
+          command: npm test

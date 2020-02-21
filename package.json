@@ -1,0 +1,10 @@
+{
+  "name": "hello-world-circle-ci",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "faunadb": "^2.11.1",
+    "jest": "^25.1.0"
+  }
+}
