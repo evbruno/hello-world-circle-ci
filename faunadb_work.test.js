@@ -8,7 +8,7 @@ afterAll(() => {
   return faunadb_teardown();
 });
 
-test('can count the indexes', async () => {
+test('can count the new entries', async () => {
   const resp = await faunadb_work();
   expect(resp).toBe(65536); 
 }, 300000);

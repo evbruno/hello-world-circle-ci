@@ -4,6 +4,8 @@ jobs:
     docker:
       - image: circleci/node:10.16.3
       - image: fauna/faunadb:latest
+        environment:
+          MAX_HEAP_SIZE: '3g'
     steps:
       - checkout
       - run:
