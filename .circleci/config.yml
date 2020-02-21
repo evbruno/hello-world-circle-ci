@@ -10,11 +10,8 @@ jobs:
           name: update-npm
           command: npm install
       - run:
-          name: test-faunadb
-          command: 'curl http://localhost:8443/ping'
+          name: wait-for-faunadb
+          command: 'while ! curl -s http://localhost:8443/ping > /dev/null; do sleep 1 ; done'
       - run:
           name: test
           command: npm test
-      - run:
-          name: code-coverage
-          command: './node_modules/.bin/nyc report --reporter=text-lcov'
