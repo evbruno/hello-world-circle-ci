@@ -1,18 +1,20 @@
 version: 2.1
 jobs:
   build:
-    working_directory: ~/mern-starter
     docker:
       - image: circleci/node:10.16.3
-      - image: mongo:4.2.0
+      - image: fauna/faunadb:latest
     steps:
       - checkout
       - run:
           name: update-npm
-          command: 'sudo npm install -g npm@5'
-      - run:
-          name: install-npm-wee
           command: npm install
-     - run:
+      - run:
+          name: test-faunadb
+          command: 'curl http://localhost:8443/ping'
+      - run:
           name: test
           command: npm test
+      - run:
+          name: code-coverage
+          command: './node_modules/.bin/nyc report --reporter=text-lcov'
