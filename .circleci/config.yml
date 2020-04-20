@@ -3,11 +3,14 @@ jobs:
   build:
     docker:
       - image: circleci/node:10.16.3
-      - image: fauna/faunadb:latest
-        environment:
-          MAX_HEAP_SIZE: '3g'
+      - image: fauna/faunadb-nightly:experimental
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
+      - setup_remote_docker: 
+          docker_layer_caching: true
       - run:
           name: update-npm
           command: npm install
