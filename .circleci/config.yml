@@ -18,5 +18,8 @@ jobs:
           name: wait-for-faunadb
           command: 'while ! curl -s http://localhost:8443/ping > /dev/null; do sleep 1 ; done'
       - run:
+          name: inspect docker resources
+          command: "docker exec `docker ps -q` bash -c 'jps -lmVv && cat /proc/meminfo'"
+      - run:
           name: test
           command: npm test
